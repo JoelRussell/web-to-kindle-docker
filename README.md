@@ -1,3 +1,3 @@
 # Web to Kindle
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+Adapted from @lankybutmacho's converter, this node app will generate kindle-appropriate (specifically Kindle 4) screenshots of websites.
