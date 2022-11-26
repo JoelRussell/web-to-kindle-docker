@@ -13,8 +13,13 @@ express()
   .get('/', async (req, res) => {
     const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
+    if (!req.query.url) {
+      res.status(400);
+      return res.end();
+    }
     await page.setViewport({ width: 600, height: 800 });
-    await page.goto(process.env.SCREENSHOT_URL || 'https://darksky.net/details/40.7127,-74.0059/2021-1-6/us12/en');
+    await page.goto(req.query.url);
+    await page.waitForTimeout(process.env.DELAY || 0);
     await page.screenshot({
       path: '/tmp/screenshot.png',
     });
